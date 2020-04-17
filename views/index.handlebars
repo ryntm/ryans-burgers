@@ -1,1 +1,85 @@
-<button class="button is-primary">CREATE</button>
+
+<style>
+    body {
+        text-align: center;
+    }
+    h1 {
+        font-family: 'Abril Fatface', cursive;
+        weight: strong;
+        font-size: 50px;
+        text-align: center;
+    }
+    .devour {
+        float: right;
+    }
+    div.row {
+        padding: 10px;
+        display: table;
+        text-align: center;
+    }
+    li {
+        height: 40px;
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+    }
+    #burger-image {
+        height: 200px;
+        width: 267px;
+    }
+    #image-div {
+        text-align: center;
+    }
+    #burger-form {
+        width: 500px;
+        text-align: center;
+    }
+    .is-primary {
+        margin: 10px;
+    }
+    textarea {
+        width: 500px;
+        font-size:large;
+        vertical-align: middle;
+        padding: 10px;
+    }
+</style>
+<h1>Ryan's Burgers</h1>
+<div id="image-div">
+    <img src="https://cdn.dribbble.com/users/2804/screenshots/1065999/burger.gif" id="burger-image">
+
+    <div>
+        <textarea placeholder="Create burger here.." rows="2" cols="10" id="burger-form"></textarea>
+    </div>
+    <div>
+        <button class="button is-primary">CREATE</button>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column" id="burgerIdeas">
+        New Burgers
+        <br>
+        <ol>
+        {{#each burgerIdeas}}
+            <div class='row'>
+                <li>{{this.burger_name}}</li>
+                <button class="button devour" id="burger{{this.id}}">
+                    DEVOUR
+                </button>
+            </div>
+            <br>
+        {{/each}}
+        </ol>
+    </div>
+
+    <div class="column">
+        Eaten Burgers
+    </div>
+</div>
+
+
+
+<script>
+
+</script>

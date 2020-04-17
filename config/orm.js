@@ -15,8 +15,8 @@ let orm = {
         });
     },
 
-    update: (table, newValue, column, criteria, cb) => {
-        connection.query('UPDATE ?? SET ? WHERE ??=?', [table, newValue, column, criteria], (err, res) => {
+    update: (table, newValue, column, condition, cb) => {
+        connection.query('UPDATE ?? SET ? WHERE ??=?', [table, newValue, column, condition], (err, res) => {
             if (err) throw err;
             cb(res);
         });
