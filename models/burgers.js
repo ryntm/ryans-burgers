@@ -7,18 +7,29 @@ var burger = {
         });
     },
 
-    insert: function (cols, vals, cb) {
-        orm.insert('burgers', cols, vals, function(res){
+    insert: function (newBurger, cb) {
+        orm.insert('burgers', "burger_name", newBurger, function(res){
             cb(res);
         })
     },
 
-    eat: function (condition, cb) {
-        orm.update ('burgers', condition, function(res){
+    updateEaten: function(eaten, burgerID, cb) {
+        let update = {
+            "devoured": eaten
+        };
+        orm.updateEaten("burgers", update, "id", burgerID, (res) => {
             cb(res);
-        })
-    }
+        });
+    },
 
+    updateHide: function(hide, burgerID, cb) {
+        let update = {
+            "hide": hide
+        };
+        orm.updateHide("burgers", update, "id", burgerID, (res) => {
+            cb(res);
+        });
+    }
 };
 
 module.exports = burger;

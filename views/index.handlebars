@@ -9,6 +9,9 @@
         font-size: 50px;
         text-align: center;
     }
+    .title {
+        font-family: 'Abril';
+    }
     .devour {
         float: right;
     }
@@ -42,6 +45,17 @@
         font-size:large;
         vertical-align: middle;
         padding: 10px;
+        border-radius: 10px;
+    }
+    .row {
+        background-color: lightgrey;
+        border-radius: 10px;
+
+    }
+    .column {
+        margin: 20px;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
     }
 </style>
 <h1>Ryan's Burgers</h1>
@@ -52,19 +66,20 @@
         <textarea placeholder="Create burger here.." rows="2" cols="10" id="burger-form"></textarea>
     </div>
     <div>
-        <button class="button is-primary">CREATE</button>
+        <button class="button is-primary" id="create-burger">CREATE</button>
     </div>
 </div>
 
 <div class="columns">
     <div class="column" id="burgerIdeas">
+        <div class="title">
         New Burgers
-        <br>
+        </div>
         <ol>
         {{#each burgerIdeas}}
             <div class='row'>
                 <li>{{this.burger_name}}</li>
-                <button class="button devour" id="burger{{this.id}}">
+                <button class="button is-warning devour" id={{this.id}}>
                     DEVOUR
                 </button>
             </div>
@@ -74,12 +89,57 @@
     </div>
 
     <div class="column">
+        <div class="title">
         Eaten Burgers
+        </div>
+        <ol>
+        {{#each burgersEaten}}
+            <div class='row'>
+                <li>{{this.burger_name}}</li>
+                <button class="button is-danger hide" id={{this.id}}>
+                    HIDE
+                </button>
+            </div>
+            <br>
+        {{/each}}
+        </ol>
     </div>
 </div>
 
 
 
 <script>
+    $('#create-burger').on('click', () => {
+        let newBurger = {
+            burger_name: $('#burger-form').val().trim(),
+        }
+        $.ajax('/api/', {
+            type: 'POST',
+            data: newBurger
+        }).then(response => {
+            console.log('Burger added to DB');
+            location.reload();
+        })
+    })
+
+    $(".devour").on("click", function() {
+        let burgerID = $(this).attr("id");
+
+        $.ajax('/api/eat/'+burgerID, {
+            type: 'PUT'
+        }).then(function(response) {
+            location.reload();
+        })
+    })
+
+    $('.hide').on('click', function() {
+        let burgerID = $(this).attr('id');
+
+        $.ajax('/api/hide/'+burgerID, {
+            type: 'PUT'
+        }).then(response => {
+            location.reload();
+        })
+    })
 
 </script>
