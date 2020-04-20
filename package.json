@@ -1,8 +1,14 @@
 {
   "name": "ryans-burgers",
   "version": "1.0.0",
-  "description": "app for creating/eating virtual burgers",
+  "description": "Making and eating burgers",
   "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,10 +22,5 @@
   "bugs": {
     "url": "https://github.com/ryntm/ryans-burgers/issues"
   },
-  "homepage": "https://github.com/ryntm/ryans-burgers#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^4.0.3",
-    "mysql": "^2.18.1"
-  }
+  "homepage": "https://github.com/ryntm/ryans-burgers#readme"
 }
