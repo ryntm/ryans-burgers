@@ -1,0 +1,145 @@
+
+<style>
+    body {
+        text-align: center;
+    }
+    h1 {
+        font-family: 'Abril Fatface', cursive;
+        weight: strong;
+        font-size: 50px;
+        text-align: center;
+    }
+    .title {
+        font-family: 'Abril';
+    }
+    .devour {
+        float: right;
+    }
+    div.row {
+        padding: 10px;
+        display: table;
+        text-align: center;
+    }
+    li {
+        height: 40px;
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+    }
+    #burger-image {
+        height: 200px;
+        width: 267px;
+    }
+    #image-div {
+        text-align: center;
+    }
+    #burger-form {
+        width: 500px;
+        text-align: center;
+    }
+    .is-primary {
+        margin: 10px;
+    }
+    textarea {
+        width: 500px;
+        font-size:large;
+        vertical-align: middle;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .row {
+        background-color: lightgrey;
+        border-radius: 10px;
+
+    }
+    .column {
+        margin: 20px;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
+    }
+</style>
+<h1>Ryan's Burgers</h1>
+<div id="image-div">
+    <img src="https://cdn.dribbble.com/users/2804/screenshots/1065999/burger.gif" id="burger-image">
+
+    <div>
+        <textarea placeholder="Create burger here.." rows="2" cols="10" id="burger-form"></textarea>
+    </div>
+    <div>
+        <button class="button is-primary" id="create-burger">CREATE</button>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column" id="burgerIdeas">
+        <div class="title">
+        New Burgers
+        </div>
+        <ol>
+        {{#each burgerIdeas}}
+            <div class='row'>
+                <li>{{this.burger_name}}</li>
+                <button class="button is-warning devour" id={{this.id}}>
+                    DEVOUR
+                </button>
+            </div>
+            <br>
+        {{/each}}
+        </ol>
+    </div>
+
+    <div class="column">
+        <div class="title">
+        Eaten Burgers
+        </div>
+        <ol>
+        {{#each burgersEaten}}
+            <div class='row'>
+                <li>{{this.burger_name}}</li>
+                <button class="button is-danger hide" id={{this.id}}>
+                    HIDE
+                </button>
+            </div>
+            <br>
+        {{/each}}
+        </ol>
+    </div>
+</div>
+
+
+
+<script>
+    $('#create-burger').on('click', () => {
+        let newBurger = {
+            burger_name: $('#burger-form').val().trim(),
+        }
+        $.ajax('/api/', {
+            type: 'POST',
+            data: newBurger
+        }).then(response => {
+            console.log('Burger added to DB');
+            location.reload();
+        })
+    })
+
+    $(".devour").on("click", function() {
+        let burgerID = $(this).attr("id");
+
+        $.ajax('/api/eat/'+burgerID, {
+            type: 'PUT'
+        }).then(function(response) {
+            location.reload();
+        })
+    })
+
+    $('.hide').on('click', function() {
+        let burgerID = $(this).attr('id');
+
+        $.ajax('/api/hide/'+burgerID, {
+            type: 'PUT'
+        }).then(response => {
+            location.reload();
+        })
+    })
+
+</script>

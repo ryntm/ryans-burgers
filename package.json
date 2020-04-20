@@ -1,0 +1,25 @@
+{
+  "name": "ryans-burgers",
+  "version": "1.0.0",
+  "description": "app for creating/eating virtual burgers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryntm/ryans-burgers.git"
+  },
+  "author": "ryntm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryntm/ryans-burgers/issues"
+  },
+  "homepage": "https://github.com/ryntm/ryans-burgers#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "mysql": "^2.18.1"
+  }
+}
