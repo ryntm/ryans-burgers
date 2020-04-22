@@ -1,0 +1,57 @@
+body {
+    text-align: center;
+}
+h1 {
+    font-family: 'Abril Fatface', cursive;
+    weight: strong;
+    font-size: 50px;
+    text-align: center;
+}
+.title {
+    font-family: 'Abril';
+}
+.devour {
+    float: right;
+}
+div.row {
+    padding: 10px;
+    display: table;
+    text-align: center;
+}
+li {
+    height: 40px;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+#burger-image {
+    height: 200px;
+    width: 267px;
+}
+#image-div {
+    text-align: center;
+}
+#burger-form {
+    width: 500px;
+    text-align: center;
+}
+.is-primary {
+    margin: 10px;
+}
+textarea {
+    width: 500px;
+    font-size:large;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 10px;
+}
+.row {
+    background-color: lightgrey;
+    border-radius: 10px;
+
+}
+.column {
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+}
